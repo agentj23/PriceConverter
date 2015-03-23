@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "OCR_VM.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +17,23 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+
+    
+    // Print values for all the scanned values:
+    NSBundle* myBundle = [NSBundle mainBundle];
+    NSArray* myImageURLs = [myBundle pathsForResourcesOfType:@"png"
+                                              inDirectory:nil];
+    
+    OCR_VM *ocrVM = [OCR_VM new];
+    for (NSString *imageURL in myImageURLs) {
+        NSLog(@"KAMIL LOG, IMG WITH URL: %@", imageURL);
+        UIImage *image = [UIImage imageWithContentsOfFile:imageURL];
+        [ocrVM stringWithImage:image onSuccess:^(NSString *text){
+            NSLog(@"KAMIL LOG, recognized text: %@", text);
+        }];
+    }
+
+    
     return YES;
 }
 

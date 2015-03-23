@@ -80,7 +80,7 @@
     G8RecognitionOperation *operation = [[G8RecognitionOperation alloc] init];
     
     // Configure inner G8Tesseract object as described before
-    operation.tesseract.language = @"eng+ita";
+    operation.tesseract.language = @"eng";
     operation.tesseract.charWhitelist = @"01234567890";
     operation.tesseract.image = [image g8_blackAndWhite];
     
